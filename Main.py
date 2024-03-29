@@ -27,8 +27,10 @@ text_box.pack(pady=10)
 
 # creating a button
 def save_text():
-    with open('Notes.txt', 'w') as file:
+    with open('Notes.txt', 'a') as file:
+        file.write("\n~~~~~~~~~~~~~~~~~~~~~~ Saved text ~~~~~~~~~~~~~~~~~~~~~~~~~\n")
         file.write(text_box.get('1.0', ttk.END))
+        file.write("~~~~~~~~~~~~~~~~~~~~~~ End of Text ~~~~~~~~~~~~~~~~~~~~~~~~")
 
 
 button = ttk.Button(

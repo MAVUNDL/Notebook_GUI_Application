@@ -8,6 +8,7 @@ This is a simple GUI application built with Python's `ttkbootstrap` library. It 
 
 - User-friendly interface
 - Ability to write and save notes
+- Notes are appended to the existing notes, not overwritten
 
 ## How to Run the Application
 
@@ -20,7 +21,7 @@ This is a simple GUI application built with Python's `ttkbootstrap` library. It 
 ## How to Use the Application
 
 1. Write your notes in the text box.
-2. Click the "Save text" button to save your notes. The notes will be saved in a file named `Notes.txt`.
+2. Click the "Save text" button to save your notes. The notes will be appended to the existing notes in a file named `Notes.txt`.
 
 ## Code Overview
 
@@ -47,8 +48,10 @@ text_box.pack(pady=10)
 
 # creating a button
 def save_text():
-    with open('Notes.txt', 'w') as file:
+    with open('Notes.txt', 'a') as file:
+        file.write("\n~~~~~~~~~~~~~~~~~~~~~~ Saved text ~~~~~~~~~~~~~~~~~~~~~~~~~\n")
         file.write(text_box.get('1.0', ttk.END))
+        file.write("~~~~~~~~~~~~~~~~~~~~~~ End of Text ~~~~~~~~~~~~~~~~~~~~~~~~")
 
 button = ttk.Button(master=window, text='Save text', command=save_text)
 button.pack(pady=5)
